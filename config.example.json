@@ -1,0 +1,24 @@
+{
+  "discord": {
+    "prefix": "",
+    "token": "",
+    "roleAuth": {
+      "__comment__": "Dev is user IDs. Everything else is roles",
+      "dev": [
+        ""
+      ],
+      "admin": [
+        ""
+      ],
+      "mod": [
+        ""
+      ]
+    },
+    "modmail": {
+      "guildID": "",
+      "categoryID": "",
+      "logsID": ""
+    },
+    "blacklist": []
+  }
+}

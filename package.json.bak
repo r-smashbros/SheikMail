@@ -1,0 +1,26 @@
+{
+  "name": "fncomp-bot",
+  "version": "0.0.1-dev",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SirPacker/FnComp-Discord-Bot.git"
+  },
+  "author": "SirPacker",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sirpacker/FnComp-Discord-Bot/issues"
+  },
+  "homepage": "https://github.com/sirpacker/FnComp-Discord-Bot#readme",
+  "dependencies": {
+    "discord.js": "github:hydrabolt/discord.js#faf27fabc055cb3850e823cf36c0af21c0139c35",
+    "klaw": "^2.0.0",
+    "moment": "^2.18.1",
+    "snekfetch": "^4.0.0",
+    "uws": "^9.14.0"
+  }
+}
