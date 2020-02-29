@@ -1,6 +1,6 @@
 const Command = require('../structures/command.js'),
   moment = require('moment'),
-  { MessageEmbed } = require('discord.js');
+  { Collection, MessageEmbed } = require('discord.js');
 
 module.exports = class extends Command {
   constructor(client, filePath) {
@@ -22,7 +22,9 @@ module.exports = class extends Command {
   async memberClose(message, author, member) {
     const messages = await message.channel.messages.fetch({ limit: 100 });
     const haste = await this.client.hastebin(
-      messages.map(m => `${moment(m.createdAt).format("dddd MMMM Do, YYYY, hh:mm A")} | ${m.author.tag} (${m.author.id}):\n${m.content}`).join("\n\n=-= =-= =-= =-= =-=\n\n")
+      new Collection([...messages].reverse())
+        .map(m => `${moment(m.createdAt).format("dddd MMMM Do, YYYY, hh:mm A")} | ${m.author.tag} (${m.author.id}):\n${m.content}`)
+        .join("\n\n=-= =-= =-= =-= =-=\n\n")
     );
 
     if (haste === false) return message.channel.send('Hastebin down. Data not saved. Case not closed.');
@@ -42,11 +44,14 @@ module.exports = class extends Command {
 
     message.guild.channels.get(this.client.config['discord']['modmail']['logsID'])
       .send({ embed });
-    //.send(`\`\`\`asciidoc\n= ${author.tag} (${author.id}) =\nClosed By:: ${message.author.tag} (${message.author.id})\nLogs:: ${haste}\n\`\`\``)
 
-    author.send(`**Your ModMail case has been marked resolved by:** ${message.author.tag} (${message.author.id})`)
-      .then(m => message.channel.send(`Closing ModMail Case. Channel will be deleted in 10 seconds.`))
-      .catch(e => message.channel.send(`Couldn't DM User. Closing ModMail Case. Channel will be deleted in 10 seconds.`));
+    if (!/--silent/.test(message.content)) {
+      author.send(`**Your ModMail case has been marked resolved by:** ${message.author.tag} (${message.author.id})`)
+        .then(m => message.channel.send(`Closing ModMail Case. Channel will be deleted in 10 seconds.`))
+        .catch(e => message.channel.send(`Couldn't DM User. Closing ModMail Case. Channel will be deleted in 10 seconds.`));
+    } else {
+      message.channel.send(`Closing ModMail Case **SILENTLY**. Channel will be deleted in 10 seconds.`);
+    }
 
     setTimeout(() => {
       message.channel.delete(`Case Closed: ${author.tag} (${author.id}) | By: ${message.author.tag} (${message.author.id})`);
@@ -56,8 +61,11 @@ module.exports = class extends Command {
   async noMemberClose(message, author) {
     const messages = await message.channel.messages.fetch({ limit: 100 });
     const haste = await this.client.hastebin(
-      messages.map(m => `${moment(m.createdAt).format("dddd MMMM Do, YYYY, hh:mm A")} | ${m.author.tag} (${m.author.id}):\n${m.content}`).join("\n\n=-= =-= =-= =-= =-=\n\n")
+      new Collection([...messages].reverse())
+        .map(m => `${moment(m.createdAt).format("dddd MMMM Do, YYYY, hh:mm A")} | ${m.author.tag} (${m.author.id}):\n${m.content}`)
+        .join("\n\n=-= =-= =-= =-= =-=\n\n")
     );
+
 
     if (haste === false) return message.channel.send('Hastebin down. Data not saved. Case not closed.');
 
@@ -75,7 +83,6 @@ module.exports = class extends Command {
 
     message.guild.channels.get(this.client.config['discord']['modmail']['logsID'])
       .send({ embed });
-    //.send(`\`\`\`asciidoc\n= ${author.tag} (${author.id}) =\nClosed By:: ${message.author.tag} (${message.author.id})\nLogs:: ${haste}\n\`\`\``)
 
     message.channel.send(`User no longer in server. Closing ModMail Case. Channel will be deleted in 10 seconds.`);
 
