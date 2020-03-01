@@ -1,4 +1,4 @@
-# Discord-ModMail-Bot
+# SheikMail
 An open-source ModMail bot for Discord
 
 ## Self-hosting
