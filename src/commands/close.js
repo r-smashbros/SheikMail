@@ -21,11 +21,11 @@ module.exports = class extends Command {
     if (!await this.client.handlers.db.has("activitystats", message.author.id))
       await this.client.handlers.db.insert("activitystats", {
         "id": message.author.id,
-        "data": { "actions": 1, "messages": 0 }
+        "data": { "actions": 0, "messages": 0, "closes": 1 }
       });
     else {
       const activityData = await this.client.handlers.db.get("activitystats", message.author.id);
-      activityData["data"]["actions"]++;
+      activityData["data"]["closes"]++;
       await this.client.handlers.db.update("activitystats", message.author.id, activityData);
     }
   }
