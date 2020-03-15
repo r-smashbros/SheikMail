@@ -17,7 +17,19 @@ module.exports = class extends Command {
     message.guild.members.fetch(author.id)
       .then(async m => await this.memberClose(message, author, m))
       .catch(async e => await this.noMemberClose(message, author));
+
+    if (!await this.client.handlers.db.has("activitystats", message.author.id))
+      await this.client.handlers.db.insert("activitystats", {
+        "id": message.author.id,
+        "data": { "actions": 0, "messages": 0, "closes": 1 }
+      });
+    else {
+      const activityData = await this.client.handlers.db.get("activitystats", message.author.id);
+      activityData["data"]["closes"]++;
+      await this.client.handlers.db.update("activitystats", message.author.id, activityData);
+    }
   }
+  
 
   async memberClose(message, author, member) {
     const messages = await message.channel.messages.fetch({ limit: 100 });

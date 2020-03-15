@@ -13,6 +13,9 @@ new class extends Client {
     this.config = require("../config.json");
     this.Constants = require("./Constants.json");
     this.commands = new Collection();
+    
+    this.handlers = {};
+    this.handlers.db = new (require("./handlers/database.js"))(this);
 
     this.init();
 

@@ -20,5 +20,10 @@
       "logsID": ""
     },
     "blacklist": []
+  }, 
+  "database": {
+    "creds": {
+      "db": ""
+    }
   }
 }

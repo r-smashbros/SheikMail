@@ -21,6 +21,7 @@
     "discord.js": "github:hydrabolt/discord.js#faf27fabc055cb3850e823cf36c0af21c0139c35",
     "klaw": "^2.0.0",
     "moment": "^2.18.1",
+    "rethinkdbdash": "2.3.31",
     "snekfetch": "^4.0.0",
     "uws": "^9.14.0"
   }
