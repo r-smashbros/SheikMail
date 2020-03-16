@@ -1,7 +1,7 @@
 {
-  "name": "discord-modmail-bot",
+  "name": "SheikMail",
   "version": "0.0.1-dev",
-  "description": "An Open-Source ModMail Discord Bot",
+  "description": "An open-source ModMail bot for Discord",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
@@ -9,16 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SirPacker/Discord-ModMail-Bot.git"
+    "url": "git+https://github.com/r-smashbros/SheikMail.git"
   },
   "author": "SirPacker",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/SirPacker/Discord-ModMail-Bot/issues"
+    "url": "https://github.com/r-smashbros/SheikMail/issues"
   },
-  "homepage": "https://github.com/SirPacker/Discord-ModMail-Bot#readme",
+  "homepage": "https://github.com/r-smashbros/SheikMail#readme",
   "dependencies": {
-    "discord.js": "github:hydrabolt/discord.js#faf27fabc055cb3850e823cf36c0af21c0139c35",
+    "discord.js": "github:discordjs/discord.js#57033f3334a0b89167cec2264e125670a7c8a64d",
     "klaw": "^2.0.0",
     "moment": "^2.18.1",
     "rethinkdbdash": "2.3.31",
