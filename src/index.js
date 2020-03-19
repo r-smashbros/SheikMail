@@ -102,9 +102,8 @@ new class extends Client {
         .setFooter("Only seen by staff")
         .setTimestamp();
 
-      await caseChannel.send({ embed });
+      await caseChannel.send("@here", { embed });
       await caseChannel.send(`\n**${message.author.username}:** ${message.content}`);
-
       message.author.send("Thank you for your ModMail. It will be reviewed by a moderator at their earliest convenience.")
         .catch(console.error);
       return;
