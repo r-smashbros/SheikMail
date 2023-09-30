@@ -20,7 +20,7 @@
   "dependencies": {
     "discord.js": "github:discordjs/discord.js#57033f3334a0b89167cec2264e125670a7c8a64d",
     "klaw": "^2.0.0",
-    "moment": "^2.18.1",
+    "moment": "^2.29.4",
     "rethinkdbdash": "2.3.31",
     "snekfetch": "^4.0.0",
     "uws": "^9.14.0"
